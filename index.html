@@ -1,75 +1,20 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-  <meta charset="UTF-8">
-  <title>Carte des régions de France</title>
-  <link rel="stylesheet" href="leaflet.css" />
-  <style>
-    html,
-    body {
-      height: 100%;
-      margin: 0;
-    }
-
-    #map {
-      height: 100vh;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <title>Carte avec Excel</title>
+    <link rel="stylesheet" href="leaflet.css" />
+    <style>
+        #map { height: 600px; width: 100%; }
+    </style>
 </head>
-
-<style>
-  .leaflet-tooltip.departement-label {
-    background-color: #ffffff;
-    /* Couleur de fond du cercle */
-    color: rgb(0, 0, 0);
-    border: none;
-    border-radius: 50%;
-    text-align: center;
-    width: 24px;
-    height: 24px;
-    line-height: 24px;
-    font-size: 12px;
-    font-weight: bold;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
-    padding: 0;
-  }
-</style>
-
 <body>
-  <div id="info-panel" style="
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: white;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  max-width: 250px;
-  z-index: 1000;
-  display: none; /* caché par défaut */
-"></div>
-  <div id="map"></div>
 
-  <script src="leaflet.js"></script>
-  <script src="script.js"></script>
+    <input type="file" id="inputExcel" accept=".xlsx,.xls" />
+    <div id="map"></div>
 
-  <div id="carte-legende" style="
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  background: white;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 10px 15px;
-  font-size: 14px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.1);
-  z-index: 1000;
-">
-    <strong>Légende :</strong>
-    <div id="legende-contenu"></div>
-  </div>
-
+    <script src="leaflet.js"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+    <script src="script.js"></script> <!-- ton fichier JS -->
 </body>
-
 </html>
