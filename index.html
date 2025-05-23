@@ -14,7 +14,34 @@
     <div id="map"></div>
 
     <script src="leaflet.js"></script>
-    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+    <input type="file" id="inputExcel" />
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+<script>
+  document.getElementById('inputExcel').addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      const data = new Uint8Array(evt.target.result);
+      const workbook = XLSX.read(data, { type: 'array' });
+
+      // Supposons que les données sont dans la première feuille
+      const firstSheetName = workbook.SheetNames[0];
+      const worksheet = workbook.Sheets[firstSheetName];
+
+      // Convertir la feuille en JSON
+      const jsonData = XLSX.utils.sheet_to_json(worksheet);
+
+      // Afficher toutes les lignes dans la console
+      console.log("Données extraites :", jsonData);
+
+      // Extraire uniquement les colonnes "Code postal" et "Représentant"
+      jsonData.forEach(row => {
+        console.log("CODI:", row["CODI"], "| REPRES:", row["REPRES"]);
+      });
+    };
+    reader.readAsArrayBuffer(file);
+  });
+</script>
     <script src="script.js"></script> <!-- ton fichier JS -->
 </body>
 </html>
